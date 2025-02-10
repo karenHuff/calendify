@@ -1,0 +1,87 @@
+@import './base.css';
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-size: cover;
+  user-select: none;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-left: 10px;
+}
+
+h1 { font-size: 20px; font-weight: bold; }
+
+h2 { font-size: 16px; }
+
+h3 {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+h4 { font-size: 12px; }
+
+h5 {
+  font-size: 10pt;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  color: rgb(175, 175, 175);
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  justify-content: left;
+  text-align: left;
+}
+
+/* botones */
+.button {
+  background: none;
+  overflow: hidden;
+  text-decoration: none;
+  outline:none;
+  display: block;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* select */
+select{
+  font-family: Arial;
+  outline: none;
+  border: none;
+}
+
+/* colores aplicación */
+.desarrollo { background-color: #fade3f; }
+
+.production { background-color: #93e045; }
+
+.in_capa { background-color: #81d2e4; }
+
+.update { background-color: #f1a54e; }
+
+/* colores reporte */
+.reporte-m { background-color: #687cab; }
+
+.reporte-r { background-color: #cc6e7b; }
+
+
+@media (1px < width < 400px) {
+  body { display: none;}
+}
