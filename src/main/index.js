@@ -4,7 +4,7 @@ import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 const { autoUpdater } = require('electron-updater');
 //import icon from '../../resources/iconUser.ico?asset'
 
-const server = 'https://github.com/karenHuff/calendify';
+const server = 'https://github.com/karenHuff/calendify/releases/';
 
 
 function createWindow() {
@@ -45,14 +45,15 @@ app.whenReady().then(() => {
 		optimizer.watchWindowShortcuts(window)
 	})
 
-	ipcMain.on('ping', () => console.log('pong'))
-
 	createWindow()
 
 	// Configuración de autoactualización
 	autoUpdater.setFeedURL(server); // Configura la URL de feed
-	autoUpdater.checkForUpdatesAndNotify(); // Verifica actualizaciones automáticamente
 
+	setInterval(() => {
+		autoUpdater.checkForUpdatesAndNotify();
+	}, 600000);
+	
 	autoUpdater.on('checking-for-update', () => {
 		console.log('Verificando actualizaciones...');
 	});
