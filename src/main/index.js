@@ -1,11 +1,20 @@
-import { app, shell, BrowserWindow, ipcMain } from 'electron'
+import { app, shell, BrowserWindow } from 'electron'
 import path, { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 const { autoUpdater } = require('electron-updater');
 //import icon from '../../resources/iconUser.ico?asset'
 
 const server = 'https://github.com/karenHuff/calendify/releases/';
+//... Configurar link donde se alojan las actualizaciones
+autoUpdater.setFeedURL(server);
 
+//... Verificar que no estamos en modo desarrollo
+//if (is.dev) return;
+
+//... Comprobar actualizaciones
+setInterval(() =>{
+	autoUpdater.checkForUpdatesAndNotify();
+}, 60000);
 
 function createWindow() {
 	const mainWindow = new BrowserWindow({
@@ -47,19 +56,12 @@ app.whenReady().then(() => {
 
 	createWindow()
 
-	// Configuración de autoactualización
-	autoUpdater.setFeedURL(server); // Configura la URL de feed
-
-	setInterval(() => {
-		autoUpdater.checkForUpdatesAndNotify();
-	}, 600000);
-	
+	// Configuración de auto-actualización	
 	autoUpdater.on('checking-for-update', () => {
 		console.log('Verificando actualizaciones...');
 	});
 
 	autoUpdater.on('update-available', (info) => {
-		console.log('Actualización disponible.');
 		dialog.showMessageBox({
 			type: 'info',
 			title: 'Actualización disponible',
@@ -68,7 +70,7 @@ app.whenReady().then(() => {
 	});
 
 	autoUpdater.on('update-not-available', (info) => {
-		console.log('No hay actualizaciones disponibles.');
+		console.log('No hay actualizaciones disponibles.', info);
 	});
 
 	autoUpdater.on('error', (err) => {
@@ -76,10 +78,9 @@ app.whenReady().then(() => {
 	});
 
 	autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
-		console.log('Actualización descargada', releaseName);
 		dialog.showMessageBox({
 			type: 'info',
-			title: 'Actualización descargada',
+			title: `Actualización descargada, ${releaseName}`,
 			message: 'La actualización se descargó correctamente. La aplicación se cerrará y actualizará.',
 		}).then(() => {
 			autoUpdater.quitAndInstall(); //... Cierra la app e instala la nueva versión
