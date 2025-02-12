@@ -2,19 +2,12 @@ import { app, shell, BrowserWindow } from 'electron'
 import path, { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 const { autoUpdater } = require('electron-updater');
+const log = require('electron-log')
+
+log.transports.file.resolvePathFn = () => path.join('D:/proyectos_depa/calendify', '/logs/main.log');
 //import icon from '../../resources/iconUser.ico?asset'
+log.log("Version", app.getVersion())
 
-const server = 'https://github.com/karenHuff/calendify/releases/';
-//... Configurar link donde se alojan las actualizaciones
-autoUpdater.setFeedURL(server);
-
-//... Verificar que no estamos en modo desarrollo
-//if (is.dev) return;
-
-//... Comprobar actualizaciones
-setInterval(() =>{
-	autoUpdater.checkForUpdatesAndNotify();
-}, 60000);
 
 function createWindow() {
 	const mainWindow = new BrowserWindow({
@@ -56,41 +49,43 @@ app.whenReady().then(() => {
 
 	createWindow()
 
-	// Configuración de auto-actualización	
-	autoUpdater.on('checking-for-update', () => {
-		console.log('Verificando actualizaciones...');
-	});
-
-	autoUpdater.on('update-available', (info) => {
-		dialog.showMessageBox({
-			type: 'info',
-			title: 'Actualización disponible',
-			message: 'Hay una nueva versión disponible. Se actualizará ahora.',
-		});
-	});
-
-	autoUpdater.on('update-not-available', (info) => {
-		console.log('No hay actualizaciones disponibles.', info);
-	});
-
-	autoUpdater.on('error', (err) => {
-		console.error('Error al verificar actualizaciones', err);
-	});
-
-	autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
-		dialog.showMessageBox({
-			type: 'info',
-			title: `Actualización descargada, ${releaseName}`,
-			message: 'La actualización se descargó correctamente. La aplicación se cerrará y actualizará.',
-		}).then(() => {
-			autoUpdater.quitAndInstall(); //... Cierra la app e instala la nueva versión
-		});
-	});
+	autoUpdater.checkForUpdatesAndNotify();
 
 	app.on('activate', function () {
 		if (BrowserWindow.getAllWindows().length === 0) createWindow()
 	})
 })
+
+autoUpdater.on("update-available", (info) => {
+	log.info('Nueva actualización disponible');
+	dialog.showMessageBox({
+		type: 'info',
+		title: 'Actualización disponible',
+		message: 'Hay una nueva versión disponible. Se actualizará ahora.',
+	});
+})
+
+autoUpdater.on('update-not-available', (info) => {
+	log.info('No hay actualizaciones disponibles.', info);
+});
+
+autoUpdater.on('error', (err) => {
+	log.info('Error al verificar actualizaciones', err);
+});
+
+autoUpdater.on('download-progress', (progressTrack) => {
+	log.info(progressTrack)
+})
+
+autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
+	dialog.showMessageBox({
+		type: 'info',
+		title: `Actualización descargada, ${releaseName}`,
+		message: 'La actualización se descargó correctamente. La aplicación se cerrará y actualizará.',
+	}).then(() => {
+		autoUpdater.quitAndInstall(); //... Cierra la app e instala la nueva versión
+	});
+});
 
 app.on('window-all-closed', () => {
 	if (process.platform !== 'darwin') {
