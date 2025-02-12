@@ -57,12 +57,7 @@ app.whenReady().then(() => {
 })
 
 autoUpdater.on("update-available", (info) => {
-	log.info('Nueva actualización disponible');
-	dialog.showMessageBox({
-		type: 'info',
-		title: 'Actualización disponible',
-		message: 'Hay una nueva versión disponible. Se actualizará ahora.',
-	});
+	log.info('Nueva actualización disponible', info);
 })
 
 autoUpdater.on('update-not-available', (info) => {
@@ -78,13 +73,8 @@ autoUpdater.on('download-progress', (progressTrack) => {
 })
 
 autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
-	dialog.showMessageBox({
-		type: 'info',
-		title: `Actualización descargada, ${releaseName}`,
-		message: 'La actualización se descargó correctamente. La aplicación se cerrará y actualizará.',
-	}).then(() => {
-		autoUpdater.quitAndInstall(); //... Cierra la app e instala la nueva versión
-	});
+	log.info('Descargando actualización', releaseName);
+	autoUpdater.quitAndInstall(); //... Cierra la app e instala la nueva versión
 });
 
 app.on('window-all-closed', () => {
