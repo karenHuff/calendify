@@ -8,10 +8,6 @@ log.transports.file.resolvePathFn = () => path.join('D:/proyectos_depa/calendify
 //import icon from '../../resources/iconUser.ico?asset'
 log.log("Version", app.getVersion());
 
-const server = 'https://github.com/karenHuff/calendify'
-
-autoUpdater.setFeedURL(server);
-
 function createWindow() {
 	const mainWindow = new BrowserWindow({
 		width: 430,
@@ -53,10 +49,8 @@ app.whenReady().then(() => {
 	createWindow()
 
 	if (is.dev) return;
-
-	setInterval(() => {
-		autoUpdater.checkForUpdatesAndNotify();
-	}, 10 * 60 * 100);
+		
+	autoUpdater.checkForUpdatesAndNotify();
 	
 	app.on('activate', function () {
 		if (BrowserWindow.getAllWindows().length === 0) createWindow()
