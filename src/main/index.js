@@ -6,8 +6,11 @@ const log = require('electron-log')
 
 log.transports.file.resolvePathFn = () => path.join('D:/proyectos_depa/calendify', '/logs/main.log');
 //import icon from '../../resources/iconUser.ico?asset'
-log.log("Version", app.getVersion())
+log.log("Version", app.getVersion());
 
+const server = 'https://github.com/karenHuff/calendify'
+
+autoUpdater.setFeedURL(server);
 
 function createWindow() {
 	const mainWindow = new BrowserWindow({
@@ -50,8 +53,11 @@ app.whenReady().then(() => {
 	createWindow()
 
 	if (is.dev) return;
-	autoUpdater.checkForUpdatesAndNotify();
 
+	setInterval(() => {
+		autoUpdater.checkForUpdatesAndNotify();
+	}, 10 * 60 * 100);
+	
 	app.on('activate', function () {
 		if (BrowserWindow.getAllWindows().length === 0) createWindow()
 	})
