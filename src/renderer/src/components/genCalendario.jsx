@@ -134,7 +134,7 @@ function Calendario() {
     
       <div className='cont__version'>
         <div className='version'>
-          <h5>Version 1.0.0</h5>
+          <h5>Version 1.0.12</h5>
         </div>
       </div>
     </>

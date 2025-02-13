@@ -49,6 +49,7 @@ app.whenReady().then(() => {
 
 	createWindow()
 
+	if (is.dev) return;
 	autoUpdater.checkForUpdatesAndNotify();
 
 	app.on('activate', function () {
@@ -73,7 +74,7 @@ autoUpdater.on('download-progress', (progressTrack) => {
 })
 
 autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
-	log.info('Descargando actualización', releaseName);
+	log.info('Descargando actualización');
 	autoUpdater.quitAndInstall(); //... Cierra la app e instala la nueva versión
 });
 
