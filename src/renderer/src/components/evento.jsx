@@ -9,7 +9,7 @@ import iconRM from './img/icon1.png'
 import iconRR from './img/icon2.png'
 import './css/event.css';
 
-export function Evento({ fecha, eventos, proyecto, id_proyecto, setEvent, reporte }) {
+export function Evento({ fecha, proyecto, id_proyecto, setEvent, reporte }) {
   const tipo = ["desarrollo", "production", "update", "in_capa"];
   const etapa = ["", "-P", "-L", "-C", "-C"];
   const color = ["reporte-m", "reporte-r"];
@@ -113,7 +113,28 @@ export function Evento({ fecha, eventos, proyecto, id_proyecto, setEvent, report
 
   return (
     <>
-      
+      {reporte ? (
+        <>
+          {datos && datos.map(dato => ( <EventoItem key={dato.id_evento} dato={dato} /> ))}
+
+          {data && data.map(dato => ( <ReportItem key={dato.id_evento} dato={dato} /> ))}
+        </>
+      ) : ( 
+        <div style={{display: 'flex', flexDirection: 'row'}}> 
+          <div style={{
+            display: 'grid',
+            width: '100%',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }} className="evento--grid">
+            {datos && datos.map(item => ( <EventoItem key={item.id_evento} dato={item} /> ))}
+          </div>  
+        </div>
+      )}
+
+      {viewModal && ( <ModalView id={idenId} data={getEvento} close={setViewModal} openDel={setViewDelete} eventos={setEvent} addFecha={fecha} /> )}
+
+      {viewDelete && ( <ModalDelete id={idenId} close={setViewDelete} evento={setEvent} /> )}
     </>
   )
 }
