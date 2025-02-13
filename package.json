@@ -1,6 +1,6 @@
 {
   "name": "calendify",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Calendario de eventos",
   "main": "./out/main/index.js",
   "author": "Ana Karen Alvarado Olvera",
