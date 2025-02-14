@@ -1,6 +1,6 @@
 {
   "name": "calendario_prueba",
-  "version": "1.0.27",
+  "version": "1.0.30",
   "description": "Calendario de eventos",
   "main": "./out/main/index.js",
   "author": "Ana Karen Alvarado Olvera",

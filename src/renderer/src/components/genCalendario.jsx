@@ -85,10 +85,10 @@ function Calendario() {
             </div>
           </div>
 
-          <div>
+          {/*<div>
             <h5 onClick={() => setNewProyect(!newProyect)}>Crear nuevo proyecto</h5>
             {newProyect && <CreateProyecto close={setNewProyect} />}
-          </div>
+          </div>*/}
 
           <div className='body__calendar'>
             <Semana />
