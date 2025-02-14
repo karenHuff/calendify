@@ -1,4 +1,4 @@
-import { app, shell, BrowserWindow } from 'electron'
+import { app, shell, BrowserWindow, dialog } from 'electron'
 import path, { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 const { autoUpdater } = require('electron-updater');
@@ -75,7 +75,13 @@ autoUpdater.on('download-progress', (progressTrack) => {
 
 autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
 	log.info('Descargando actualización');
-	autoUpdater.quitAndInstall(); //... Cierra la app e instala la nueva versión
+	dialog.showMessageBox({
+		type: 'info',
+		title: 'Actualización descargada',
+		message: 'La actualización se descargó correctamente. La aplicación se cerrará y actualizará.',
+	}).then(() => {
+		autoUpdater.quitAndInstall(); //... Cierra la app e instala la nueva versión
+	});
 });
 
 app.on('window-all-closed', () => {
