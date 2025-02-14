@@ -1,4 +1,4 @@
-import Calendario from "./components/viewCalendario/genCalendario";
+import Calendario from "./components/genCalendario";
 
 function App() {
   return (
