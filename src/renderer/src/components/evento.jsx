@@ -113,13 +113,7 @@ export function Evento({ fecha, proyecto, id_proyecto, setEvent, reporte }) {
 
   return (
     <>
-      {reporte ? (
-        <>
-          {datos && datos.map(dato => ( <EventoItem key={dato.id_evento} dato={dato} /> ))}
-
-          {data && data.map(dato => ( <ReportItem key={dato.id_evento} dato={dato} /> ))}
-        </>
-      ) : ( 
+      
         <div style={{display: 'flex', flexDirection: 'row'}}> 
           <div style={{
             display: 'grid',
@@ -130,7 +124,7 @@ export function Evento({ fecha, proyecto, id_proyecto, setEvent, reporte }) {
             {datos && datos.map(item => ( <EventoItem key={item.id_evento} dato={item} /> ))}
           </div>  
         </div>
-      )}
+      
 
       {viewModal && ( <ModalView id={idenId} data={getEvento} close={setViewModal} openDel={setViewDelete} eventos={setEvent} addFecha={fecha} /> )}
 

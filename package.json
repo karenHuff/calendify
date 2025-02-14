@@ -1,6 +1,6 @@
 {
-  "name": "calendify",
-  "version": "1.0.17",
+  "name": "calendario_prueba",
+  "version": "1.0.18",
   "description": "Calendario de eventos",
   "main": "./out/main/index.js",
   "author": "Ana Karen Alvarado Olvera",

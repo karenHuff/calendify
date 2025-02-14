@@ -71,17 +71,17 @@ autoUpdater.on('error', (err) => {
 
 autoUpdater.on('download-progress', (progressTrack) => {
 	log.info(progressTrack)
-})
+
+	dialog.showMessageBox({
+		type: 'info',
+		title: 'Nueva actualización',
+		message: 'La aplicación se reiniciará cuando termine la descarga...',
+	});
+});
 
 autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
 	log.info('Descargando actualización');
-	dialog.showMessageBox({
-		type: 'info',
-		title: 'Actualización descargada',
-		message: 'La actualización se descargó correctamente. La aplicación se cerrará y actualizará.',
-	}).then(() => {
-		autoUpdater.quitAndInstall(); //... Cierra la app e instala la nueva versión
-	});
+	autoUpdater.quitAndInstall(); //... Cierra la app e instala la nueva versión
 });
 
 app.on('window-all-closed', () => {

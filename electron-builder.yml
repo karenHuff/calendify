@@ -1,5 +1,5 @@
 appId: com.calendify.app
-productName: calendify
+productName: calendario_prueba
 directories:
   buildResources: build
 files:
@@ -11,7 +11,7 @@ files:
 asarUnpack:
   - resources/**
 win:
-  executableName: calendify
+  executableName: calendario_prueba
   icon: resources/iconUser.ico
 nsis:
   artifactName: ${name}-${version}.${ext}
