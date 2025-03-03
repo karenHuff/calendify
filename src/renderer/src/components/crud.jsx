@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import './css/calendario.css'
 
-const url = 'https://crocodigus.net/api_calendario_v2/index.php';
+
 
 /**** Obtener registros de la tabla proyecto ****/
 export const ReadProyecto = () => {
