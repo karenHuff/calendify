@@ -102,7 +102,7 @@ export function  ModalAdd({ close, viewFecha, addFecha, evento }) {
   )
 }
 
-/**** Función para visualizar los registros agregados en un modal ****/
+/**** Función para visualuzar los registros agregados en un modal ****/
 export function ModalView({ id, data, addFecha, close, openDel, eventos }) {
   let newFecha, options, fecha;
 

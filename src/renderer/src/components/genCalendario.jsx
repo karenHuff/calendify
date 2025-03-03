@@ -85,10 +85,10 @@ function Calendario() {
             </div>
           </div>
 
-          {/*<div>
+          <div>
             <h5 onClick={() => setNewProyect(!newProyect)}>Crear nuevo proyecto</h5>
             {newProyect && <CreateProyecto close={setNewProyect} />}
-          </div>*/}
+          </div>
 
           <div className='body__calendar'>
             <Semana />
@@ -134,7 +134,7 @@ function Calendario() {
     
       <div className='cont__version'>
         <div className='version'>
-          <h5>Version 1.0.12</h5>
+          <h5>Version 1.0.0</h5>
         </div>
       </div>
     </>

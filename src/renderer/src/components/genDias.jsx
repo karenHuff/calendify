@@ -86,7 +86,7 @@ function Dias({ monthNumber, year, datos, selectProyectos, reporte }) {
         <div className={`day ${isHoliday ? 'day__holid' : 'day__t'} ${isSunday && 'day__weekend day__img'} ${isSaturday && 'day__weekend day__img'} ${today ? 'day__today' : 'day__t' } `} onDoubleClick={() => openModal(i)} key={i}>
           <div className="number">{i}</div>
           <div className="evento evento--grid">
-            <Evento fecha={getFecha} proyecto={datos} id_proyecto={selectProyectos} setEvent={setEvento} reporte={reporte} />
+            <Evento fecha={getFecha} eventos={evento} proyecto={datos} id_proyecto={selectProyectos} setEvent={setEvento} reporte={reporte} />
           </div>
         </div>
       );

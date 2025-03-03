@@ -9,7 +9,7 @@ import iconRM from './img/icon1.png'
 import iconRR from './img/icon2.png'
 import './css/event.css';
 
-export function Evento({ fecha, proyecto, id_proyecto, setEvent, reporte }) {
+export function Evento({ fecha, eventos, proyecto, id_proyecto, setEvent, reporte }) {
   const tipo = ["desarrollo", "production", "update", "in_capa"];
   const etapa = ["", "-P", "-L", "-C", "-C"];
   const color = ["reporte-m", "reporte-r"];
