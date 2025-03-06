@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import './css/calendario.css'
 
-const url = import.meta.env.VITE_API_URL; ;
+const url = import.meta.env.VITE_API_URL;
 
 /**** Obtener registros de la tabla proyecto ****/
 export const ReadProyecto = () => {
